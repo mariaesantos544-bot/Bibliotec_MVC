@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bibliotec_MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc4f4193054027af465d337d32a7c04e4be9f140")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffceaca62a0ee9155390483f6f3ce4e200178788")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bibliotec_MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bibliotec_MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

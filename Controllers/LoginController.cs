@@ -28,6 +28,7 @@ namespace Bibliotec_MVC.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Logar(string email, string senha)
+
         {
             Usuario? usuario = await _usuarioService.AutenticarUsuario(email, senha);
 
@@ -36,9 +37,8 @@ namespace Bibliotec_MVC.Controllers
                 HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());
                 HttpContext.Session.SetString("Admin", usuario.TipoBib.ToString());
                 
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","Livro");
 
-               
             }
 
              ViewBag.Erro = "Usuario ou senha inválidos";
@@ -46,5 +46,12 @@ namespace Bibliotec_MVC.Controllers
 
         }
 
+        [HttpPost]
+
+        public IActionResult Deslogar()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
+        }
     }
 }
