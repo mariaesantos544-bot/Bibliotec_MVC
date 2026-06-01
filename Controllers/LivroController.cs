@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Bibliotec_MVC.Interfaces;
+using Bibliotec_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -32,6 +33,56 @@ namespace Bibliotec_MVC.Controllers
             var livros = await _livroService.BuscarLivrosComCatAsync();
 
             return View(livros);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Cadastro()
+        {
+            string? adminSessao = HttpContext.Session.GetString("Admin");
+            if(adminSessao == null || adminSessao != "true" && adminSessao != "True")
+            {
+                return RedirectToAction("Index" , "Login");
+
+               
+            }
+             ViewBag.Admin =  true;
+             ViewBag.Categorias = await _livroService.ListarCategoriaAsync();
+
+             return View();
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Cadastro(Livro l, string? CategoriasSelecionadas, IFormFile arquivoImagem, string? ativo)
+        {
+            string? adminSessao = HttpContext.Session.GetString("Admin");
+            if(adminSessao == null || (adminSessao != "true" && adminSessao != "True"))
+
+            {
+                return RedirectToAction ("Index" , "Login");
+
+            }
+
+            await _livroService.CadastrarLivroAsync(l, CategoriasSelecionadas, arquivoImagem, ativo);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Excluir(int id)
+        {
+             string? adminSessao = HttpContext.Session.GetString("Admin");
+            if(adminSessao == null || (adminSessao != "true"  && adminSessao != "True" ))
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            bool removido = await _livroService.RemoverLivroAsync(id);
+
+            if(removido) return Ok();
+
+            return NotFound();
+
         }
 
     }

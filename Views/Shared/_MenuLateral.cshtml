@@ -36,7 +36,7 @@
                         <span>listar reservas</span>
                     </a>
 
-                    <a class="menu_item @(controller == "Livro" && acao == "Cadastro" ? "menu_item_ativo" : "")" href="/Livro/Cadastro">
+                    <a class="menu_item @(controller == "Livro" && acao == "Cadastro" ? "menu_item_ativo" : "")" asp-controller="Livro" asp-action="Cadastro">
                         <img src="img/book-plus.svg" alt="">
                         <span>cadastrar livro</span>
                     </a>
